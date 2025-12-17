@@ -18,7 +18,7 @@ def get_top_emotion(emotions_dict):
 
     if not emotions_dict:
         return None
-    # Filter out keys with a score of 0.0 to focus on positive detection
+    
     active_emotions = {k: v for k, v in emotions_dict.items() if v > 0.0}
     if not active_emotions:
         return None
@@ -39,7 +39,7 @@ class EmojiCameraApp:
         if sys.platform == "darwin":
             emoji_font = ("Apple Color Emoji", font_size)
         else:
-            emoji_font = ("Arial", font_size) # Fallback to a common font
+            emoji_font = ("Arial", font_size) 
 
         self.emoji_label = tk.Label(root, text="❓", font=emoji_font)
         self.emoji_label.pack(pady=10)
@@ -117,7 +117,7 @@ class EmojiCameraApp:
                 cv2.rectangle(bgr_frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             
                 cv2.putText(bgr_frame, current_emoji, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
-                rgb = cv2.cvtColor(bgr_frame, cv2.COLOR_BGR2RGB) # Convert back to RGB
+                rgb = cv2.cvtColor(bgr_frame, cv2.COLOR_BGR2RGB) 
 
             else:
                 emotion_text = "Face detected, but low confidence"
@@ -130,7 +130,7 @@ class EmojiCameraApp:
         
         img = Image.fromarray(rgb)
         imgtk = ImageTk.PhotoImage(image=img)
-        self.video_label.imgtk = imgtk # Keep a reference
+        self.video_label.imgtk = imgtk 
         self.video_label.config(image=imgtk)
 
         
@@ -144,3 +144,4 @@ class EmojiCameraApp:
         self.root.destroy()
 
         print("Application closed.")
+
